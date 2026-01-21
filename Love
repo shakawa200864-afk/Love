@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ذكرى 4 شهور ❤️</title>
+    <style>
+        /* التنسيق العام والخلفية */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #4a0000; /* خلفية أحمر غامق */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* خلفية حروف Z متكررة */
+        .z-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            word-wrap: break-word;
+            font-size: 14px;
+            color: rgba(255, 0, 0, 0.15); /* لون الحروف شفاف شوية */
+            z-index: -2;
+            overflow: hidden;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        /* شاشة الباسورد */
+        #passInput {
+            padding: 12px;
+            width: 80%;
+            border-radius: 15px;
+            border: 1px solid #ff4d4d;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .main-btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            transition: 0.3s;
+        }
+
+        .main-btn:hover { transform: scale(1.05); }
+
+        /* المحتوى السري */
+        #secretContent {
+            display: none;
+            animation: fadeIn 1.5s ease;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #ff0000;
+            margin: 20px 0;
+        }
+
+        .personal-message {
+            background: rgba(255, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 17px;
+            line-height: 1.6;
+            border-left: 4px solid #ff0000;
+            border-right: 4px solid #ff0000;
+        }
+
+        /* القلوب */
+        .heart {
+            position: absolute;
+            color: rgba(255, 0, 0, 0.6);
+            font-size: 20px;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="z-background" id="zBack"></div>
+
+    <div class="container">
+        <div id="passwordSection">
+            <h2 style="color: #ffb3b3; margin-bottom: 10px;">وحشتيني ❤️</h2>
+            <p style="margin-bottom: 20px;">اكتبي تاريخنا السري عشان تشوفي المفاجأة</p>
+            <input type="text" id="passInput" placeholder="15/9/2009">
+            <br>
+            <button class="main-btn" onclick="checkPassword()">افتحي المفاجأة ✨</button>
+            <p id="errorMsg" style="color: #ff4d4d; display: none; margin-top: 15px;">التاريخ غلط.. ركزي يا روحي 😂</p>
+        </div>
+
+        <div id="secretContent">
+            <div style="background:#ff0000; display:inline-block; padding:5px 15px; border-radius:20px; font-weight:bold; margin-bottom:15px;">4 شهور مع بعض ❤️</div>
+            <h1 style="font-size: 22px;">كل سنة وانتي منورة دنيتي</h1>
+
+            <video id="myVideo" controls>
+                <source src="video.mp4" type="video/mp4">
+                المتصفح لا يدعم الفيديو.
+            </video>
+
+            <div class="personal-message">
+                الـ 4 شهور دول كانوا أجمل وقت في حياتي، ومستني اللي جاي وإحنا سوا.. بحبك جداً ومقدرش استغنى عنك يا أجمل حاجة حصلتلي في الدنيا.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // توليد حروف Z في الخلفية
+        const zBack = document.getElementById('zBack');
+        zBack.innerText = "Z ".repeat(2000);
+
+        function checkPassword() {
+            const pass = document.getElementById('passInput').value;
+            const correctPass = "15/9/2009";
+
+            if (pass === correctPass) {
+                document.getElementById('passwordSection').style.display = 'none';
+                document.getElementById('secretContent').style.display = 'block';
+                document.getElementById('myVideo').play();
+                startHearts(); // تشغيل القلوب
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = "❤️";
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                document.body.appendChild(heart);
+                
+                setTimeout(() => { heart.remove(); }, 6000);
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>
